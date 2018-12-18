@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WordTypes } from '../word-types.enum';
 
 @Component({
   selector: 'app-game',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GamePage implements OnInit {
 
+  wordTypes = WordTypes;
+
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
