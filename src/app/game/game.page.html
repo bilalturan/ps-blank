@@ -14,7 +14,7 @@
 
   <ion-checkbox color="primary" checked></ion-checkbox>
 
-  
+  <ion-label>{{news?.length}} of {{totalItems}} items</ion-label>
 
   <ion-list>
     <ion-item>
@@ -25,19 +25,17 @@
       ></ion-datetime>
     </ion-item>
 
-    <ion-item *ngFor="let item of todos">
+    <ion-item *ngFor="let item of news">
       <ion-label>
-        <h3>{{ item.id }}</h3>
+        <h2>{{ item.author }}</h2>
         <h3>{{ item.title }}</h3>
       </ion-label>
     </ion-item>
   </ion-list>
 
-  <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-      <ion-infinite-scroll-content
-        loadingSpinner="bubbles"
-        loadingText="Loading more data...">
+  <ion-infinite-scroll (ionInfinite)="loadMoreNews($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
       </ion-infinite-scroll-content>
-    </ion-infinite-scroll> -->
+    </ion-infinite-scroll>
 
 </ion-content>
