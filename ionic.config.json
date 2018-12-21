@@ -1,6 +1,8 @@
 {
   "name": "ps-blank",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "89bb7f02"
 }
