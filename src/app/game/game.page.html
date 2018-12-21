@@ -8,9 +8,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   
-  <ion-label style="position: fixed; top: 25px; z-index: 999">{{news?.length}} of {{totalItems}} items</ion-label>
+  <!-- <ion-label style="position: fixed; top: 25px; z-index: 999">{{news?.length}} of {{totalItems}} items</ion-label>
 
   <ion-list>
     <ion-item>
@@ -27,9 +27,24 @@
         <h3>{{ item.title }}</h3>
       </ion-label>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 
-  <ion-infinite-scroll (ionInfinite)="loadMoreNews($event)">
+  <ion-label style="position: fixed; top: 25px; z-index: 999">{{users?.length}} users</ion-label>
+
+  <ion-card *ngFor="let user of users">
+    <ion-item >
+      <ion-avatar item-start>
+        <ion-img [src]="user.picture.medium"></ion-img>
+      </ion-avatar>
+      <h2 text.capitalize>{{user.name?.first}} {{user.name?.last}}</h2>
+      <ion-card-content>
+       {{ user.email}}
+      </ion-card-content>
+    </ion-item>
+  </ion-card>
+
+
+  <ion-infinite-scroll (ionInfinite)="loadMoreUsers($event)">
       <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>

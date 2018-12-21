@@ -8,6 +8,7 @@ import { TodosService } from "../todos.service";
 import { NewsapiService } from "../newsapi.service";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { UsersApiService } from "../users-api.service";
 
 @Component({
   selector: "app-game",
@@ -19,16 +20,17 @@ export class GamePage implements OnInit {
   todos: any[];
   date: string;
   news: any[];
-  news$: Observable<any>;
+  users: any[];
 
   page = 1;
   totalItems = 0;
+  maxUserPages = 5;
 
   //@ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
 
   constructor(
     private router: Router,
-    private todoService: TodosService,
+    private userApi: UsersApiService,
     private newsService: NewsapiService
   ) {}
 
@@ -38,28 +40,47 @@ export class GamePage implements OnInit {
 
   ngOnInit() {
     this.date = new Date().toISOString();
-    this.newsService
-      .getNews(this.page)
-      .subscribe(response => {
-        this.totalItems = response.totalResults;
-        this.news = <any[]>(response.articles);
-      });
+    // this.newsService.getNews(this.page).subscribe(response => {
+    //   this.totalItems = response.totalResults;
+    //   this.news = <any[]>response.articles;
+    // });
+
+    this.userApi.getUsers(this.page).subscribe(response => {
+      this.users = <any[]>response;
+    });
   }
 
-  loadMoreNews(event) {
+  // loadMoreNews(event) {
+  //   console.log(event);
+
+  //   this.page++;
+  //   this.newsService
+  //     .getNews(this.page)
+  //     .pipe(map(resp => (<any>resp).articles))
+  //     .subscribe(response => {
+  //       event.target.complete();
+  //       this.news = this.news.concat(<any[]>response);
+
+  //       if (this.news && this.news.length === this.totalItems) {
+  //         event.target.disabled = true;
+  //       }
+  //     });
+  // }
+
+  loadMoreUsers(event) {
     console.log(event);
 
     this.page++;
-    this.newsService.getNews(this.page).pipe(
-      map(resp => (<any>resp).articles)
-    ).subscribe(response => {
-      event.target.complete();
-      this.news = this.news.concat(<any[]>response);
+    this.userApi
+      .getUsers(this.page)
+      .subscribe(response => {
+        event.target.complete();
+        this.users = this.users.concat(<any[]>response);
 
-      if (this.news && (this.news.length === this.totalItems)) {
-           event.target.disabled = true;
-      }
-    });
+        if (this.page === this.maxUserPages) {
+          event.target.disabled = true;
+        }
+      });
   }
 
   // toggleInfiniteScroll() {
