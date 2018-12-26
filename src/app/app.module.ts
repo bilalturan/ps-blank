@@ -15,7 +15,7 @@ import { OktaCallbackComponent } from './okta-callback/okta-callback.component';
 
 const config = {
   issuer: 'https://dev-527294.oktapreview.com/oauth2/Idp',
-  //redirectUri: 'http://localhost:8100/implicit/callback',
+  // redirectUri: 'http://localhost:8100/implicit/callback',
   redirectUri: 'http://192.168.0.33:8100/implicit/callback',
   clientId: '0oaij3hbwjDjHi6ti0h7'
 };
