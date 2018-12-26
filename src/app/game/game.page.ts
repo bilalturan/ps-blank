@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { Router } from "@angular/router";
 import { UsersApiService } from "../users-api.service";
+import { LoadingController } from "@ionic/angular";
 
 @Component({
   selector: "app-game",
@@ -18,7 +19,8 @@ export class GamePage implements OnInit {
 
   constructor(
     private router: Router,
-    private userApi: UsersApiService
+    private userApi: UsersApiService,
+    private _loadingController: LoadingController
   ) {}
 
   goToHome() {
@@ -27,9 +29,20 @@ export class GamePage implements OnInit {
 
   ngOnInit() {
     //this.date = new Date().toISOString();
-    this.userApi.getUsers(this.page).subscribe(response => {
-      this.users = <any[]>response;
-    });
+
+    this._loadingController.create({
+      message: 'Please wait...'
+    }).then(loadingProgress => loadingProgress.present());
+
+    this.userApi.getUsers(this.page).subscribe(
+      response => {
+        this.users = <any[]>response;
+        this._loadingController.dismiss();
+      },
+      err => {
+        this._loadingController.dismiss();
+      }
+    );
   }
 
   loadMoreUsers(event) {
@@ -39,12 +52,12 @@ export class GamePage implements OnInit {
     this.userApi
       .getUsers(this.page)
       .subscribe(response => {
-        event.target.complete();
-        this.users = this.users.concat(<any[]>response);
+      event.target.complete();
+      this.users = this.users.concat(<any[]>response);
 
-        if (this.page === this.maxUserPages) {
-          event.target.disabled = true;
-        }
-      });
+      if (this.page === this.maxUserPages) {
+        event.target.disabled = true;
+      }
+    });
   }
 }
