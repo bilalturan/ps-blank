@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { OktaCallbackComponent } from '@okta/okta-angular';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: './home/home.module#HomePageModule' },
+  {
+    path: 'implicit/callback',
+    component: OktaCallbackComponent
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'game', loadChildren: './game/game.module#GamePageModule' },
 ];
 

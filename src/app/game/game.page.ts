@@ -35,7 +35,7 @@ export class GamePage implements OnInit {
   ) {}
 
   goToHome() {
-    this.router.navigate(["/home"]);
+    this.router.navigate(["/login"]);
   }
 
   ngOnInit() {

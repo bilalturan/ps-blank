@@ -10,6 +10,7 @@
 
   <ion-button expand="full" routerDirection="forward" (click)="goToGame()">Go to games</ion-button>
 
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://beta.ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <ion-button expand="full" routerDirection="forward" *ngIf="!isAuthenticated" (click)="login()"> Login </ion-button>
+  <ion-button expand="full" routerDirection="forward" *ngIf="isAuthenticated" (click)="logout()"> Logout </ion-button>
+
 </ion-content>
