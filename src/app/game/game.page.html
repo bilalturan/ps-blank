@@ -10,25 +10,6 @@
 
 <ion-content>
   
-  <!-- <ion-label style="position: fixed; top: 25px; z-index: 999">{{news?.length}} of {{totalItems}} items</ion-label>
-
-  <ion-list>
-    <ion-item>
-      <ion-label>Date</ion-label>
-      <ion-datetime
-        display-format="MM/DD/YYYY"
-        [(ngModel)]="date"
-      ></ion-datetime>
-    </ion-item>
-
-    <ion-item *ngFor="let item of news">
-      <ion-label>
-        <h2>{{ item.author }}</h2>
-        <h3>{{ item.title }}</h3>
-      </ion-label>
-    </ion-item>
-  </ion-list> -->
-
   <ion-label style="position: fixed; top: 25px; z-index: 999">{{users?.length}} users</ion-label>
 
   <ion-card *ngFor="let user of users">
