@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
   async presentLoading() {
     const loading = await this._loadingController.create({
       //spinner: null,
-      duration: 500000,
+      duration: 5000,
       message: 'Please wait...',
       translucent: true,
       cssClass: 'custom-class custom-loading',
