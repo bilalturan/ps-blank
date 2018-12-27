@@ -13,7 +13,7 @@
   <ion-button expand="full" routerDirection="forward" *ngIf="!isAuthenticated" (click)="login()"> Login </ion-button>
   <ion-button expand="full" routerDirection="forward" *ngIf="isAuthenticated" (click)="logout()"> Logout </ion-button>
 
-  <ion-button expand="full" (click)="presentLoading()"> Present Loading </ion-button>
+  <ion-button expand="full" (click)="presentLoading()">{{'PresentLoading' | translate}}  </ion-button>
   
 </ion-content>
 

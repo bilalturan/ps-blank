@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { LoginPage } from './login.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { LoginPage } from './login.page';
         path: '',
         component: LoginPage
       }
-    ])
+    ]),
+    TranslateModule.forChild()
   ],
   declarations: [LoginPage]
 })

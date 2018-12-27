@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { UsersApiService } from "../users-api.service";
 import { LoadingController } from "@ionic/angular";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-game",
@@ -20,7 +21,8 @@ export class GamePage implements OnInit {
   constructor(
     private router: Router,
     private userApi: UsersApiService,
-    private _loadingController: LoadingController
+    private _loadingController: LoadingController,
+    private translate: TranslateService
   ) {}
 
   goToHome() {
@@ -28,10 +30,10 @@ export class GamePage implements OnInit {
   }
 
   ngOnInit() {
-    //this.date = new Date().toISOString();
+    // this.date = new Date().toISOString();
 
     this._loadingController.create({
-      message: 'Please wait...'
+      message: this.translate.instant('PleaseWait')
     }).then(loadingProgress => loadingProgress.present());
 
     this.userApi.getUsers(this.page).subscribe(
